@@ -28,6 +28,7 @@
 
     svg(width="300" height="300")
       g(transform="translate(150, 150)")
+        circle(:r="radius" fill="tomato" fill-opacity="0.1")
         path(:d="rulerD" stroke="skyblue")
         Spiral(:settings="spiralSettings")
 </template>
