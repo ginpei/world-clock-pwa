@@ -7,7 +7,7 @@
 
 <script>
 import HomeHeader from '@/components/HomeHeader';
-import SpiralClock from '@/components/SpiralClock';
+import SpiralClock from '@/components/SpiralClock/Clock';
 import TimeSlider from '@/components/TimeSlider';
 
 export default {

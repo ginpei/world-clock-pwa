@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Spiral from '@/components/Spiral';
+import Spiral from '@/components/SpiralClock/Spiral';
 
 export default {
   components: {
