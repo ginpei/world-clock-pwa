@@ -34,11 +34,18 @@ export default {
 
   computed: {
     spiralSettings() {
+      const tzOffset = this.now.getTimezoneOffset();
+      // tz  |  deg
+      // -12 -> -360
+      //   0 ->    0
+      //  12 ->  360
+      const rotation = 270 + (tzOffset / 2);
+
       return {
+        rotation,
         radius: this.length,
         gap: 20,
         rounds: 2,
-        rotation: 270,
         resolution: 60,
       };
     },
