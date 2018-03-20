@@ -2,10 +2,7 @@
   div.SpiralClock
     svg(width="300" height="300")
       g(transform="translate(150, 150)")
-        g.board
-          circle.boardBack(:r="longLength")
-          path.index(v-for="n in indexes"
-            :d="indexPath(n)" :transform="indexTransform(n)")
+        Board(:longLength="longLength")
         path.hour(:d="hourPath" :transform="hourTransform")
         path.minute(:d="minutePath" :transform="minuteTransform")
         g(:transform="hourTransform")
@@ -13,10 +10,12 @@
 </template>
 
 <script>
+import Board from '@/components/SpiralClock/Board';
 import Spiral from '@/components/SpiralClock/Spiral';
 
 export default {
   components: {
+    Board,
     Spiral,
   },
 
@@ -25,12 +24,6 @@ export default {
     'length',
     'longLength',
   ],
-
-  data() {
-    return {
-      indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
-    };
-  },
 
   computed: {
     spiralSettings() {
@@ -77,28 +70,11 @@ export default {
       return `rotate(${rotate})`;
     },
   },
-
-  methods: {
-    indexPath() {
-      return `M 0 ${this.longLength - 5} l 0 -5`;
-    },
-
-    indexTransform(n) {
-      const rotate = 360 * (n / 12);
-      return `rotate(${rotate})`;
-    },
-  },
 };
 </script>
 
 <style lang="sass" scoped>
 .SpiralClock
-
-.boardBack
-  fill: #eee
-
-.index
-  stroke: #999
 
 .hour
   stroke: #333
