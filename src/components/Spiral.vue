@@ -1,6 +1,6 @@
 <template lang="pug">
   g.Spiral
-    path(:d="d" fill="transparent" stroke="tomato")
+    path(:d="d")
 </template>
 
 <script>
@@ -48,11 +48,6 @@ export default {
 };
 </script>
 
-
-<style lang="sass" scoped>
-h1
-  color: tomato
-</style>
 
 <style lang="sass" scoped>
 .Spiral
