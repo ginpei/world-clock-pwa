@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Spiral SVG</title>
+    <style>
+svg {
+    box-shadow: 0 0 10px #0003
+}
+label {
+    display: inline-block;
+    text-align: right;
+    width: 300px;
+}
+label input {
+    width: 170px;
+}
+label span {
+    display: inline-block;
+    width: 20px;
+}
+    </style>
+</head>
+<body>
+    <h1>Spiral SVG</h1>
+    <p>
+        <label>Rounds: <input id="rounds" type="range" min="1" max="20" value="2" /> <span id="rounds-value"></span></label>
+        <br />
+        <label>Radius: <input id="radius" type="range" min="50" max="150" value="100" /> <span id="radius-value"></span></label>
+        <br />
+        <label>Gap: <input id="gap" type="range" min="2" max="50" value="30" /> <span id="gap-value"></span></label>
+        <br />
+        <label>Rotation: <input id="rotation" type="range" min="0" max="360" value="0" /> <span id="rotation-value"></span></label>
+        <br />
+        <label>Resolution: <input id="resolution" type="range" min="3" max="120" value="30" /> <span id="resolution-value"></span></label>
+    </p>
+    <svg id="spiral" width="300" height="300"></svg>
+    <script src="js.js"></script>
+</body>
+</html>
