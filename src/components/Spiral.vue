@@ -10,26 +10,6 @@ export default {
   ],
 
   computed: {
-    radius() {
-      return this.settings.radius;
-    },
-
-    gap() {
-      return this.settings.gap;
-    },
-
-    rounds() {
-      return this.settings.rounds;
-    },
-
-    rotation() {
-      return this.settings.rotation;
-    },
-
-    resolution() {
-      return this.settings.resolution;
-    },
-
     d() {
       const points = this.points;
       const linePoints = points.slice(1).map(point => `L ${point[0]} ${point[1]}`);
@@ -37,40 +17,19 @@ export default {
       return d;
     },
 
+    /**
+     * @param {object} settings
+     * @param {number} settings.radius Maximum radius
+     * @param {number} settings.gap Gap between lines
+     * @param {number} settings.rounds How many times spiral rounds
+     * @param {number} settings.rotation
+     * @param {number} settings.resolution
+     * @returns {Array} e.g. `[[100,100], [101,102], ...]`
+     */
     points() {
       const {
         radius: maxR, gap, rounds, rotation, resolution,
-      } = this;
-      const points = [];
-
-      for (let i = 0; i < (resolution * rounds) + 1; i += 1) {
-        const totalProgress = i / (resolution * rounds);
-        const circleProgress = (i % resolution) / resolution;
-        const r = (maxR - (gap * rounds)) + (gap * rounds * totalProgress);
-        const deg = 2 * Math.PI * (circleProgress + (rotation / 360));
-        const x = r * Math.cos(deg);
-        const y = r * Math.sin(deg);
-        points.push([x, y]);
-      }
-
-      return points;
-    },
-  },
-
-  methods: {
-    /**
-       * @param {object} settings
-       * @param {number} settings.radius Maximum radius
-       * @param {number} settings.gap Gap between lines
-       * @param {number} settings.rounds How many times spiral rounds
-       * @param {number} settings.rotation
-       * @param {number} settings.resolution
-       * @returns {Array} e.g. `[[100,100], [101,102], ...]`
-       */
-    buildPoints(settings) {
-      const {
-        radius: maxR, gap, rounds, rotation, resolution,
-      } = settings;
+      } = this.settings;
       const points = [];
 
       for (let i = 0; i < (resolution * rounds) + 1; i += 1) {
@@ -102,4 +61,3 @@ path
   fill: transparent
   stroke: tomato
 </style>
-
