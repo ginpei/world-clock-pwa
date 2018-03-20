@@ -1,0 +1,103 @@
+<template lang="pug">
+  div.SpiralClock
+    svg(width="300" height="300")
+      g(transform="translate(150, 150)")
+        g.board
+          circle.boardBack(:r="longLength")
+          path.index(v-for="n in indexes"
+            :d="indexPath(n)" :transform="indexTransform(n)")
+        path.hour(:d="hourPath" :transform="hourTransform")
+        path.minute(:d="minutePath" :transform="minuteTransform")
+        g(:transform="hourTransform")
+          Spiral(:settings="spiralSettings")
+</template>
+
+<script>
+import Spiral from '@/components/Spiral';
+
+export default {
+  components: {
+    Spiral,
+  },
+
+  props: [
+    'now',
+    'length',
+    'longLength',
+  ],
+
+  data() {
+    return {
+      indexes: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+    };
+  },
+
+  computed: {
+    spiralSettings() {
+      return {
+        radius: this.length,
+        gap: 20,
+        rounds: 2,
+        rotation: 270,
+        resolution: 60,
+      };
+    },
+
+    hourPath() {
+      const width = 10;
+      return `M 0 ${width} l 0 ${-this.length - width}`;
+    },
+
+    hourTransform() {
+      return `rotate(${this.hourRotation})`;
+    },
+
+    hourRotation() {
+      const hProgress = (this.now.getHours() % 12) / 12;
+      const mProgress = this.now.getMinutes() / 60;
+      const rotate = 360 * (hProgress + (mProgress / 12));
+      return rotate;
+    },
+
+    minutePath() {
+      const width = 10;
+      return `M 0 ${width} l 0 ${-this.longLength - width}`;
+    },
+
+    minuteTransform() {
+      const mProgress = this.now.getMinutes() / 60;
+      const rotate = 360 * mProgress;
+      return `rotate(${rotate})`;
+    },
+  },
+
+  methods: {
+    indexPath() {
+      return `M 0 ${this.longLength - 5} l 0 -5`;
+    },
+
+    indexTransform(n) {
+      const rotate = 360 * (n / 12);
+      return `rotate(${rotate})`;
+    },
+  },
+};
+</script>
+
+<style lang="sass" scoped>
+.SpiralClock
+
+.boardBack
+  fill: #eee
+
+.index
+  stroke: #999
+
+.hour
+  stroke: #333
+  stroke-width: 10px
+
+.minute
+  stroke: #333
+  stroke-width: 2px
+</style>
