@@ -27,9 +27,9 @@ import Spiral from '@/components/SpiralClock/Spiral.vue';
   },
 })
 export default class extends Vue {
-  now: Date = new Date(0);
-  length: number = 100;
-  longLength: number = 120;
+  now: Date;
+  length: number;
+  longLength: number;
 
   get spiralSettings() {
     const tzOffset = this.now.getTimezoneOffset();
