@@ -6,40 +6,35 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import { Vue, Component } from 'vue-property-decorator';
 import HomeHeader from '@/components/HomeHeader.vue';
 import SpiralClock from '@/components/SpiralClock/Clock.vue';
 import TimeSlider from '@/components/TimeSlider.vue';
 
-export default Vue.extend({
+@Component({
   components: {
     HomeHeader,
     SpiralClock,
     TimeSlider,
   },
-
-  data() {
-    return {
-      now: new Date(),
-      tmTick: 0,
-    };
-  },
+})
+export default class extends Vue {
+  now = new Date();
+  tmTick = 0;
 
   mounted() {
     this.tmTick = setInterval(() => this.tick(), 100);
-  },
+  }
 
   destroyed() {
     clearInterval(this.tmTick);
     this.tmTick = 0;
-  },
+  }
 
-  methods: {
-    tick() {
-      this.now = new Date();
-    },
-  },
-});
+  tick() {
+    this.now = new Date();
+  }
+}
 </script>
 
 <style lang="sass" scoped>
