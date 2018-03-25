@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Board from '@/components/SpiralClock/Board';
-import Spiral from '@/components/SpiralClock/Spiral';
+import Board from '@/components/SpiralClock/Board.vue';
+import Spiral from '@/components/SpiralClock/Spiral.vue';
 
 export default {
   components: {

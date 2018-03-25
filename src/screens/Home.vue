@@ -5,12 +5,13 @@
     TimeSlider
 </template>
 
-<script>
-import HomeHeader from '@/components/HomeHeader';
-import SpiralClock from '@/components/SpiralClock/Clock';
-import TimeSlider from '@/components/TimeSlider';
+<script lang="ts">
+import Vue from 'vue';
+import HomeHeader from '@/components/HomeHeader.vue';
+import SpiralClock from '@/components/SpiralClock/Clock.vue';
+import TimeSlider from '@/components/TimeSlider.vue';
 
-export default {
+export default Vue.extend({
   components: {
     HomeHeader,
     SpiralClock,
@@ -20,17 +21,17 @@ export default {
   data() {
     return {
       now: new Date(),
+      tmTick: 0,
     };
   },
 
   mounted() {
-    this.startedAt = new Date();
     this.tmTick = setInterval(() => this.tick(), 100);
   },
 
   destroyed() {
     clearInterval(this.tmTick);
-    this.tmTick = null;
+    this.tmTick = 0;
   },
 
   methods: {
@@ -38,7 +39,7 @@ export default {
       this.now = new Date();
     },
   },
-};
+});
 </script>
 
 <style lang="sass" scoped>
